@@ -4,22 +4,18 @@ namespace YaLinqo\Tests\Stubs;
 
 // @codeCoverageIgnoreStart
 
-class Temp
-{
+class Temp {
     public $v;
 
-    public function __construct($v)
-    {
-        $this->v = $v;
+    public function __construct($value) {
+        $this->v = $value;
     }
 
-    public function foo($a)
-    {
+    public function foo($a) {
         return $this->v + $a;
     }
 
-    public static function bar($a)
-    {
+    public static function bar($a) {
         return $a;
     }
 }

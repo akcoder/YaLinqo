@@ -11,50 +11,42 @@ class FunctionsTest extends TestCaseEnumerable
 {
     /** @covers \YaLinqo\Functions::init
      */
-    function testInit()
-    {
+    public function testInit(): void {
         F::init();
         $this->assertNotEmpty(F::$identity);
     }
 
-    function testIdentity()
-    {
+    public function testIdentity(): void {
         $f = F::$identity;
         $this->assertSame(2, $f(2));
     }
 
-    function testKey()
-    {
+    public function testKey(): void {
         $f = F::$key;
         $this->assertSame(3, $f(2, 3));
     }
 
-    function testValue()
-    {
+    public function testValue(): void {
         $f = F::$value;
         $this->assertSame(2, $f(2, 3));
     }
 
-    function testTrue()
-    {
+    public function testTrue(): void {
         $f = F::$true;
-        $this->assertSame(true, $f());
+        $this->assertTrue($f());
     }
 
-    function testFalse()
-    {
+    public function testFalse(): void {
         $f = F::$false;
-        $this->assertSame(false, $f());
+        $this->assertFalse($f());
     }
 
-    function testBlank()
-    {
+    public function testBlank(): void {
         $f = F::$blank;
-        $this->assertSame(null, $f());
+        $this->assertNull($f());
     }
 
-    function testCompareStrict()
-    {
+    public function testCompareStrict(): void {
         $f = F::$compareStrict;
         $this->assertSame(-1, $f(2, 3));
         $this->assertSame(-1, $f(2, '2'));
@@ -62,8 +54,7 @@ class FunctionsTest extends TestCaseEnumerable
         $this->assertSame(1, $f(3, 2));
     }
 
-    function testCompareStrictReversed()
-    {
+    public function testCompareStrictReversed(): void {
         $f = F::$compareStrictReversed;
         $this->assertSame(1, $f(2, 3));
         $this->assertSame(1, $f(2, '2'));
@@ -71,8 +62,7 @@ class FunctionsTest extends TestCaseEnumerable
         $this->assertSame(-1, $f(3, 2));
     }
 
-    function testCompareLoose()
-    {
+    public function testCompareLoose(): void {
         $f = F::$compareLoose;
         $this->assertSame(-1, $f(2, 3));
         $this->assertSame(0, $f(2, '2'));
@@ -80,8 +70,7 @@ class FunctionsTest extends TestCaseEnumerable
         $this->assertSame(1, $f(3, 2));
     }
 
-    function testCompareLooseReversed()
-    {
+    public function testCompareLooseReversed(): void {
         $f = F::$compareLooseReversed;
         $this->assertSame(1, $f(2, 3));
         $this->assertSame(0, $f(2, '2'));
@@ -89,24 +78,21 @@ class FunctionsTest extends TestCaseEnumerable
         $this->assertSame(-1, $f(3, 2));
     }
 
-    function testCompareInt()
-    {
+    public function testCompareInt(): void {
         $f = F::$compareInt;
         $this->assertSame(-1, $f(2, 3));
         $this->assertSame(0, $f(2, 2));
         $this->assertSame(1, $f(3, 2));
     }
 
-    function testCompareIntReversed()
-    {
+    public function testCompareIntReversed(): void {
         $f = F::$compareIntReversed;
         $this->assertSame(1, $f(2, 3));
         $this->assertSame(0, $f(2, 2));
         $this->assertSame(-1, $f(3, 2));
     }
 
-    function testIncrement()
-    {
+    public function testIncrement(): void {
         $f = F::increment();
         $this->assertSame(0, $f());
         $this->assertSame(1, $f());

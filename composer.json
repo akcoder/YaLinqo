@@ -16,24 +16,24 @@
         "docs": "http://athari.github.io/YaLinqo"
     },
     "require": {
-        "php": ">=7.0"
+        "php": ">=8.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "phpdocumentor/phpdocumentor": "^2.8",
-        "satooshi/php-coveralls": "^2.0"
+        "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.12.17",
+        "ext-simplexml": "*"
     },
     "autoload": {
         "psr-4": {
-            "YaLinqo\\": "YaLinqo/"
+            "YaLinqo\\": "src/"
         },
         "files": [
-            "YaLinqo/Linq.php"
+            "src/Linq.php"
         ]
     },
     "autoload-dev": {
         "psr-4": {
-            "YaLinqo\\Tests\\": "Tests/"
+            "YaLinqo\\Tests\\": "tests/"
         }
     },
     "extra": {

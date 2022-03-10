@@ -1,10 +1,15 @@
 /vendor/
+/tools/
 /phpdocs/
 /build/
 composer.lock
 tmp.php
 
+.php-cs-fixer.cache
+.phpunit.result.cache
+
 # IDE
 .project
 .buildpath
 .settings
+.idea
