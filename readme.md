@@ -3,7 +3,6 @@
 [![Travis CI Status](https://img.shields.io/travis/Athari/YaLinqo.svg)](https://travis-ci.org/Athari/YaLinqo)
 [![Coveralls Coverage](https://img.shields.io/coveralls/Athari/YaLinqo/master.svg)](https://coveralls.io/r/Athari/YaLinqo)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/Athari/YaLinqo.svg)](https://scrutinizer-ci.com/g/Athari/YaLinqo)
-[![SensioLabs Insight Check](https://img.shields.io/sensiolabs/i/d1273f86-85e3-4076-a037-a40062906329.svg)](https://insight.sensiolabs.com/projects/d1273f86-85e3-4076-a037-a40062906329)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/athari/yalinqo.svg)](https://packagist.org/packages/athari/yalinqo)
 [![Packagist Version](https://img.shields.io/packagist/v/athari/yalinqo.svg)](https://packagist.org/packages/athari/yalinqo)
 [![GitHub License](https://img.shields.io/github/license/Athari/YaLinqo.svg)](license.md)
