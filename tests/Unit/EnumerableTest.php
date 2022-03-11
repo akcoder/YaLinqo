@@ -879,7 +879,7 @@ final class EnumerableTest extends TestCaseEnumerable {
         self::assertEnumEquals(
             [ 1 => [ [ 6 ], 3 ], 2 => [ [ 7 ], 4 ], 3 => [ [ 8 ], 5 ] ],
             E::from([ 'a1' => 3, 'a2' => 4, 'a3' => 5 ])->groupJoin(
-                [ '1b' => 6, '2b' => 7, '3b' => 8 ], static fn($v, $k) => $k[1], static fn($v, $k) => intval($k), static fn($v, $e, $k) => [ $e, $v ]));
+                [ '1b' => 6, '2b' => 7, '3b' => 8 ], static fn($v, $k) => $k[1], static fn($v, $k) => (int) $k, static fn($v, $e, $k) => [$e, $v ]));
 
         // groupJoin (inner, outerKeySelector, innerKeySelector, resultSelectorValue, resultSelectorKey)
         self::assertEnumEquals(
@@ -1076,10 +1076,10 @@ final class EnumerableTest extends TestCaseEnumerable {
 
         // average (selector)
         self::assertEquals(
-            (3 * 2 + 0 + 4 * 2 + 1 + 5 * 2 + 2) / 3,
+            (3 * 2 + 4 * 2 + 1 + 5 * 2 + 2) / 3,
             E::from([ 3, 4, 5 ])->average(static fn($v, $k) => $v*2+$k));
         self::assertEquals(
-            (3 * 2 + 0 + 4 * 2 + 1 + 5 * 2 + 2 + 0 * 2 + 3) / 4,
+            (3 * 2 + 4 * 2 + 1 + 5 * 2 + 2 + 0 * 2 + 3) / 4,
             E::from([ 3, '4', '5', 0 ])->average(static fn($v, $k) => $v*2+$k));
     }
 
@@ -1220,10 +1220,10 @@ final class EnumerableTest extends TestCaseEnumerable {
 
         // sum (selector)
         self::assertEquals(
-            3 * 2 + 0 + 4 * 2 + 1 + 5 * 2 + 2,
+            3 * 2 + 4 * 2 + 1 + 5 * 2 + 2,
             E::from([ 3, 4, 5 ])->sum(static fn($v, $k) => $v*2+$k));
         self::assertEquals(
-            3 * 2 + 0 + 4 * 2 + 1 + 5 * 2 + 2 + 0 * 2 + 3,
+            3 * 2 + 4 * 2 + 1 + 5 * 2 + 2 + 0 * 2 + 3,
             E::from([ 3, '4', '5', null ])->sum(static fn($v, $k) => $v*2+$k));
     }
 
@@ -2488,14 +2488,14 @@ final class EnumerableTest extends TestCaseEnumerable {
     public function testCall(): void {
         // call (action)
         $a = [];
-        foreach (E::from([])->call(function($v, $k) use (&$a) { $a[$k] = $v; }) as $_) {
+        foreach (E::from([])->call(static function($v, $k) use (&$a) { $a[$k] = $v; }) as $_) {
         }
 
         self::assertEquals(
             [],
             $a);
         $a = [];
-        foreach (E::from([ 1, 'a' => 2, 3 ])->call(function($v, $k) use (&$a) { $a[$k] = $v; }) as $_){
+        foreach (E::from([ 1, 'a' => 2, 3 ])->call(static function($v, $k) use (&$a) { $a[$k] = $v; }) as $_){
         }
 
         self::assertEquals(
@@ -2503,14 +2503,14 @@ final class EnumerableTest extends TestCaseEnumerable {
             $a);
         $a = [];
 
-        foreach (E::from([ 1, 'a' => 2, 3 ])->call(function($v, $k) use (&$a) { $a[$k] = $v; }) as $_) {
+        foreach (E::from([ 1, 'a' => 2, 3 ])->call(static function($v, $k) use (&$a) { $a[$k] = $v; }) as $_) {
             break;
         }
         self::assertEquals(
             [ 1 ],
             $a);
         $a = [];
-        E::from([ 1, 'a' => 2, 3 ])->call(function($v, $k) use (&$a) { $a[$k] = $v; });
+        E::from([ 1, 'a' => 2, 3 ])->call(static function($v, $k) use (&$a) { $a[$k] = $v; });
         self::assertEquals(
             [],
             $a);
@@ -2520,12 +2520,12 @@ final class EnumerableTest extends TestCaseEnumerable {
     public function testEach(): void {
         // call (action)
         $a = [];
-        E::from([])->each(function($v, $k) use (&$a) { $a[$k] = $v; });
+        E::from([])->each(static function($v, $k) use (&$a) { $a[$k] = $v; });
         self::assertEquals(
             [],
             $a);
         $a = [];
-        E::from([ 1, 'a' => 2, 3 ])->each(function($v, $k) use (&$a) { $a[$k] = $v; });
+        E::from([ 1, 'a' => 2, 3 ])->each(static function($v, $k) use (&$a) { $a[$k] = $v; });
         self::assertEquals(
             [ 1, 'a' => 2, 3 ],
             $a);
